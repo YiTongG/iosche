@@ -4,4 +4,6 @@ project(iosche)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(iosche
-        main.cpp)
+        main.cpp
+        debug.h
+        IORequest.h)
