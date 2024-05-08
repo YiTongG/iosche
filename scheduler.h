@@ -113,7 +113,7 @@ public:
         if (IOqueue.empty()) return nullptr;
 
         int closestDistance = INT_MAX;
-        int closestIndex = -1;
+        int closestIndex = 0;
         bool foundForward = false;
 
         //  iterate through the queue to find the closest request in the current direction
@@ -131,11 +131,11 @@ public:
         //      if no request was found in the current direction, search for the closest request in the opposite direction
         if (!foundForward) {
             for (int i = 0; i < IOqueue.size(); i++) {
-                int trackDistance = curr_track - IOqueue[i]->track_number;
+                int trackDistance = abs(IOqueue[i]->track_number -0);
 
                 //  only consider backward requests
-                if (trackDistance <= 0 && trackDistance < closestDistance) {
-                    closestDistance = curr_track - IOqueue[i]->track_number;
+                if (IOqueue[i]->track_number - curr_track <= 0 && trackDistance < closestDistance) {
+                    closestDistance = trackDistance;
                     closestIndex = i;
                 }
             }
