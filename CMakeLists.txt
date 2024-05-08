@@ -6,4 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 add_executable(iosche
         main.cpp
         debug.h
-        IORequest.h)
+        IORequest.h
+        scheduler.h
+        simulator.h)

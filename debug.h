@@ -12,7 +12,6 @@ using namespace std;
 void logEvent(const string& eventDescription) {
     cout << eventDescription << endl;
 }
-extern vector<IORequest> io_requests;
 
 vector<IORequest> operationsLog;
 
