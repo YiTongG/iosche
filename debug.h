@@ -32,23 +32,5 @@ void finishOperation(int time, IORequest& op) {
     logEvent(to_string(time) + ": " + to_string(op.operation_index) + " finish " + to_string(duration));
 }
 
-void logQueueState(const vector<IORequest>& queue, int direction) {
-    cout << "Queue State: ";
-    for (const auto& req : queue) {
-        cout << "[" << req.operation_index << " : " << req.track_number << "]";
-    }
-    cout << " Direction: " << (direction == 1 ? "up" : "down") << endl;
-}
-void logFlookState(const vector<IORequest>& activeQueue, const deque<IORequest>& waitQueue) {
-    cout << "Active Queue: ";
-    for (const auto& req : activeQueue) {
-        cout << "[" << req.operation_index << " : " << req.track_number << "]";
-    }
-    cout << " | Wait Queue: ";
-    for (const auto& req : waitQueue) {
-        cout << "[" << req.operation_index << " : " << req.track_number << "]";
-    }
-    cout << endl;
-}
 
 #endif //IOSCHE_DEBUG_H

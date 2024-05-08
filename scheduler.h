@@ -200,7 +200,7 @@ public:
         }
 
         if (!IOqueue.empty()) {
-            IOqueue.erase(IOqueue.begin());  // 只有当 IOqueue 不空时才执行删除
+            IOqueue.erase(IOqueue.begin());  // Remove the request from the main queue
         }
 
         return op;

@@ -9,6 +9,8 @@
 #include <list>
 #include "IORequest.h"
 #include "scheduler.h"
+#include "debug.h"
+
 class Simulation {
 
 private:
@@ -47,6 +49,9 @@ public:
 
             if(currentOpPtr != &IORequests[IORequests.size()] && currentTime == (*currentOpPtr)->arrival_time){
                 scheduler->addRequest(*currentOpPtr);
+                if (verbose) {
+                    addOperation(currentTime, (*currentOpPtr)->operation_index, (*currentOpPtr)->track_number);
+                }
                 currentOpPtr++;
             }
 
@@ -54,6 +59,9 @@ public:
             if(currentActiveRequest != nullptr){
                 if(currentHead == currOperation->track_number){
                     currOperation->end_time = currentTime;
+                    if (verbose) {
+                        finishOperation(currentTime, *currOperation);
+                    }
                     currentActiveRequest = nullptr;
                 }else {
                     int direction = currOperation->track_number > currentHead ? 1 : -1;
@@ -67,9 +75,11 @@ public:
                 currOperation = scheduler->selectRequest(currentHead);
                 currOperation->start_time = currentTime;
                 currentActiveRequest = currOperation;
+                if (verbose) {
+                    issueOperation(currentTime, *currOperation, currentHead);
+                }
                 continue;
             }
-
             currentTime++;
         }
 
